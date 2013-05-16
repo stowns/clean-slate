@@ -1,4 +1,4 @@
-angular.module('admin-users', ['admin-users-edit', 'services.crud', 'services.i18nNotifications', 'directives.gravatar'])
+angular.module('admin-users', ['admin-users-edit', 'services.crud', 'services.i18nNotifications', 'directives.gravatar', 'security.authorization'])
 
 .config(['crudRouteProvider', 'securityAuthorizationProvider', function (crudRouteProvider, securityAuthorizationProvider) {
 

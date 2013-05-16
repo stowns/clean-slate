@@ -2,7 +2,6 @@ describe('admin projects', function () {
 
   var $scope;
   var $controller;
-  beforeEach(module('admin-projects'));
   beforeEach(inject(function ($injector) {
     $scope = $injector.get('$rootScope');
     $controller = $injector.get('$controller');

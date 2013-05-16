@@ -1,19 +1,19 @@
 {
-  "author": "Pawel Kozlowski & Peter Bacon Darwin",
-  "name": "angular-app",
-  "homepage": "https://github.com/angular-app/angular-app",
+  "author": "Pawel Kozlowski & Peter Bacon Darwin & Simon Townsend",
+  "name": "clean-slate",
+  "homepage": "https://github.com/stowns/clean-slate",
   "version": "0.0.1-SNAPSHOT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:angular-app/angular-app.git"
+    "url": "git@github.com:stowns/clean-slate.git"
   },
   "bugs": {
-    "url": "https://github.com/angular-app/angular-app/issues"
+    "url": "https://github.com/stowns/clean-slate/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://raw.github.com/angular-app/angular-app/master/LICENSE"
+      "url": "https://github.com/stowns/clean-slate/blob/master/LICENSE"
     }
   ],
   "engines": {

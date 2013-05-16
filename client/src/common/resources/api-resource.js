@@ -1,13 +1,9 @@
-angular.module('mongolabResource', []).factory('mongolabResource', ['MONGOLAB_CONFIG','$http', '$q', function (MONGOLAB_CONFIG, $http, $q) {
+angular.module('apiResource', []).factory('apiResource', ['$http', '$q', function ($http, $q) {
 
-  function MongolabResourceFactory(collectionName) {
+  function ApiResourceFactory(collectionName) {
 
-    //var url = 'MONGOLAB_CONFIG.baseUrl + MONGOLAB_CONFIG.dbName + '/collections/' + collectionName';
-    var url = '/api/'
+    var url = '/api/' + collectionName;
     var defaultParams = {};
-    if (MONGOLAB_CONFIG.apiKey) {
-      defaultParams.apiKey = MONGOLAB_CONFIG.apiKey;
-    }
     
     var thenFactoryMethod = function (httpPromise, successcb, errorcb, isArray) {
       var scb = successcb || angular.noop;
@@ -15,21 +11,21 @@ angular.module('mongolabResource', []).factory('mongolabResource', ['MONGOLAB_CO
 
       return httpPromise.then(function (response) {
         var result;
+
+        if (response.status === 404) {
+          return $q.reject({
+              code:'resource.notfound',
+              collection:collectionName
+            });
+        }
+        
         if (isArray) {
           result = [];
           for (var i = 0; i < response.data.length; i++) {
             result.push(new Resource(response.data[i]));
           }
         } else {
-          //MongoLab has rather peculiar way of reporting not-found items, I would expect 404 HTTP response status...
-          if (response.data === " null "){
-            return $q.reject({
-              code:'resource.notfound',
-              collection:collectionName
-            });
-          } else {
-            result = new Resource(response.data);
-          }
+          result = new Resource(response.data);
         }
         scb(result, response.status, response.headers, response.config);
         return result;
@@ -53,24 +49,11 @@ angular.module('mongolabResource', []).factory('mongolabResource', ['MONGOLAB_CO
       return thenFactoryMethod(httpPromise, successcb, errorcb, true);
     };
 
-    Resource.getById = function (id, successcb, errorcb) {
-      var httpPromise = $http.get(url + '/' + id, {params:defaultParams});
-      return thenFactoryMethod(httpPromise, successcb, errorcb);
-    };
-
-    Resource.getByIds = function (ids, successcb, errorcb) {
-      var qin = [];
-      angular.forEach(ids, function (id) {
-         qin.push({$oid: id});
-      });
-      return Resource.query({_id:{$in:qin}}, successcb, errorcb);
-    };
-
     //instance methods
 
     Resource.prototype.$id = function () {
-      if (this._id && this._id.$oid) {
-        return this._id.$oid;
+      if (this._id) {
+        return this._id;
       }
     };
 
@@ -99,5 +82,5 @@ angular.module('mongolabResource', []).factory('mongolabResource', ['MONGOLAB_CO
 
     return Resource;
   }
-  return MongolabResourceFactory;
+  return ApiResourceFactory;
 }]);
