@@ -1,9 +1,10 @@
 # Clean Slate
-Clean Slate aims to be the perfect starting point for an AngularJS/NodeJS webapp.  This boilerplate borrows heavily from [angular-app](https://github.com/angular-app/angular-app).  The largest modifications being to the mongodb implementation (more easily allowing a local instance to be configured) as well as introducing [mongoosejs](https://github.com/learnboost/mongoose) for persistence.
+Clean Slate aims to be the perfect starting point for an AngularJS/NodeJS webapp.  This boilerplate is heavily modified from [angular-app](https://github.com/angular-app/angular-app).  The largest modifications are to the mongodb implementation (more easily allowing a local instance to be configured) as well as introducing [mongoosejs](https://github.com/learnboost/mongoose) for persistence.  Also, the configuration has been spruced up and I've moved away from using mongolab-resource in favor of apiResource as I'm not huge on the client talking directly to the db.  There is still some view-gutting to do but it's a work-in-progress.
 
 __TODO
-* Move away from the use of mongolab-resource on the frontend
 * Add Tests
+* continue to gut application-specific views remaining from angular-app
+* build out a few /api routes
 
 ## Stack
 
