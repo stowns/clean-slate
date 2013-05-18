@@ -45,7 +45,7 @@ security.initialize(mongoose);                              // Add a Mongo strat
 
 app.use(function(req, res, next) {
   if ( req.user ) {
-    console.log('Current User:', req.user.firstName, req.user.lastName);
+    console.log('Current User:', req.user.name.first, req.user.name.last);
   } else {
     console.log('Unauthenticated');
   }
