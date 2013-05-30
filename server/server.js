@@ -57,7 +57,12 @@ app.use(function(req, res, next) {
 // ROUTES
 ////////////////
 app.namespace('/api', function() {
-  var sendJson = function(req, res) { console.log('sending json %j', res.jsonData); res.json(res.jsonData); }
+  var sendJson = function(req, res) { 
+    console.log('sending json %j', res.jsonData); 
+    if (res.jsonData === null) return res.send(404);
+
+    res.json(res.jsonData); 
+  }
 
   app.get('/users', security.authenticationRequired, routes.api.user.list);
   //app.post('/user/:name', security.authenticationRequired, routes.api.user.retrieve);
