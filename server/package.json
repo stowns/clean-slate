@@ -16,7 +16,8 @@
     "lodash" : "*",
     "bcrypt": "*",
     "imagemagick" : "*",
-    "connect-redis": "*"
+    "connect-redis": "*",
+    "winston": "*"
   },
   "devDependencies": {
     "rewire": "~1.0.3",

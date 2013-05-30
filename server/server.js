@@ -12,7 +12,8 @@ var express = require('express'),
     xsrf = require('./lib/xsrf'),
     protectJSON = require('./lib/protectJSON'),
     mongoose = require('mongoose'),
-    models = require('./models');
+    models = require('./models'),
+    routes = require('./routes');
 
 require('express-namespace');
 
@@ -55,13 +56,14 @@ app.use(function(req, res, next) {
 ////////////////
 // ROUTES
 ////////////////
-// app.namespace('/api', function() {
-//   var sendJson = function(req, res) { console.log('sending json %o', res.jsonData); res.json(res.jsonData); }
+app.namespace('/api', function() {
+  var sendJson = function(req, res) { console.log('sending json %j', res.jsonData); res.json(res.jsonData); }
 
-//   app.post('/user/:name', security.authenticationRequired, routes.api.user.retrieve);
-//   app.all('/*', sendJson);
+  app.get('/users', security.authenticationRequired, routes.api.user.list);
+  //app.post('/user/:name', security.authenticationRequired, routes.api.user.retrieve);
+  app.all('/*', sendJson);
 
-// });
+});
 
 app.post('/login', security.login);
 app.post('/logout', security.logout);
