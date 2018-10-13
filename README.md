@@ -17,7 +17,7 @@ __TODO
 
 It is a complete project with a build system focused on AngularJS apps and tightly integrated with other tools commonly used in the AngularJS community:
 * powered by [Grunt.js](http://gruntjs.com/)
-* test written using [Jasmine](http://pivotal.github.com/jasmine/) syntax
+* test written using [Jasmine](https://jasmine.github.io/) syntax
 * test are executed by [Testacular](http://vojtajina.github.com/testacular/) (integrated with the Grunt.js build)
 * build supporting JS, CSS and AngularJS templates minification
 * [Twitter's bootstrap](http://twitter.github.com/bootstrap/) with LESS templates processing integrated into the build
